@@ -1,10 +1,11 @@
 import css from "./ContactForm.module.css";
-
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import { useId } from "react";
 import * as Yup from "yup";
 import "yup-phone-lite";
 import { nanoid } from "nanoid";
+import { useDispatch, useSelector } from "react-redux";
+import { addContact } from "../../redux/store";
 
 const initialValues = {
   name: "",
@@ -22,12 +23,16 @@ const FeedbackSchema = Yup.object().shape({
 });
 
 export default function ContactForm({ onAdd }) {
+  const contacts = useSelector((state) => state.contacts.items);
+  const dispatch = useDispatch();
+
   const handleSubmit = (values, actions) => {
     onAdd({
       name: values.name,
       number: values.number,
       id: nanoid(),
     });
+    dispatch(addContact());
     actions.resetForm();
   };
 
