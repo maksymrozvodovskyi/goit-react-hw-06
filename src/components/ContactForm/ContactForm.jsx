@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import "yup-phone-lite";
 import { nanoid } from "nanoid";
 import { useDispatch, useSelector } from "react-redux";
-import { addContact } from "../../redux/store";
+import { addContact } from "../../redux/contactsSlice";
 
 const initialValues = {
   name: "",
