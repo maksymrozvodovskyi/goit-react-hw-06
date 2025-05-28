@@ -6,19 +6,13 @@ const slice = createSlice({
     items: [],
   },
   reducers: {
-    addContact: () => {},
-    deleteContact: () => {},
+    addContact: (state, action) => {},
+    deleteContact: (state, action) => {},
   },
 });
 
-// export const addContact = createAction("contacts/addContact");
-// export const deleteContact = createAction("contacts/deleteContact");
+export const { addContact, deleteContact } = slice.actions;
 
-// export default function contactSliceReducer(state = initialState, action) {
-//   switch (action.type) {
-//     case "contacts/addContact":
-//     case "contacts/deleteContact":
-//     default:
-//       return state;
-//   }
-// }
+export default slice.reducer;
+
+// state.items.push(action.payload)
