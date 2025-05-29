@@ -7,15 +7,7 @@ import SearchBox from "../SearchBox/SearchBox";
 import ContactList from "../ContactList/ContactList";
 
 export default function App() {
-  const [contacts, setContacts] = useState(() => {
-    const savedContacts = window.localStorage.getItem("contacts");
-
-    if (savedContacts !== null) {
-      return JSON.parse(savedContacts);
-    }
-
-    return [];
-  });
+  const [contacts, setContacts] = useState([]);
 
   const [filter, setFilter] = useState("");
   const [debouncedInputValue] = useDebounce(filter, 300);
@@ -25,10 +17,6 @@ export default function App() {
       contact.name.toLowerCase().includes(debouncedInputValue.toLowerCase())
     );
   }, [debouncedInputValue, contacts]);
-
-  useEffect(() => {
-    window.localStorage.setItem("contacts", JSON.stringify(contacts));
-  }, [contacts]);
 
   return (
     <div>
