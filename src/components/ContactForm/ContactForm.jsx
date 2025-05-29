@@ -4,7 +4,7 @@ import { useId } from "react";
 import * as Yup from "yup";
 import "yup-phone-lite";
 import { nanoid } from "nanoid";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contactsSlice";
 
 const initialValues = {
@@ -23,7 +23,6 @@ const FeedbackSchema = Yup.object().shape({
 });
 
 export default function ContactForm() {
-  const contacts = useSelector((state) => state.contacts.items);
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
