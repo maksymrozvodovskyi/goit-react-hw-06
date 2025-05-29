@@ -22,17 +22,17 @@ const FeedbackSchema = Yup.object().shape({
     .required("Required"),
 });
 
-export default function ContactForm({ onAdd }) {
+export default function ContactForm() {
   const contacts = useSelector((state) => state.contacts.items);
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-    onAdd({
+    const newContact = {
       name: values.name,
       number: values.number,
       id: nanoid(),
-    });
-    dispatch(addContact());
+    };
+    dispatch(addContact(newContact));
     actions.resetForm();
   };
 

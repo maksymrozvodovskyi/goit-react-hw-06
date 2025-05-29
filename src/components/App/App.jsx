@@ -20,18 +20,6 @@ export default function App() {
   const [filter, setFilter] = useState("");
   const [debouncedInputValue] = useDebounce(filter, 300);
 
-  const addContact = (newContact) => {
-    setContacts((prevContact) => {
-      return [...prevContact, newContact];
-    });
-  };
-
-  const deleteContact = (contactId) => {
-    setContacts((prevContacts) => {
-      return prevContacts.filter((contact) => contact.id !== contactId);
-    });
-  };
-
   const visibileContacts = useMemo(() => {
     return contacts.filter((contact) =>
       contact.name.toLowerCase().includes(debouncedInputValue.toLowerCase())
@@ -45,9 +33,9 @@ export default function App() {
   return (
     <div>
       <h1>Phonebook</h1>
-      <ContactForm onAdd={addContact} />
-      <SearchBox value={filter} onFilter={setFilter} />
-      <ContactList contactsList={visibileContacts} onDelete={deleteContact} />
+      <ContactForm />
+      <SearchBox />
+      <ContactList />
     </div>
   );
 }
